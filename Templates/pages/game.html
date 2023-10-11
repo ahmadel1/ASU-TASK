@@ -1,0 +1,92 @@
+{%extends 'base.html'%}
+
+{% block content%}
+<div class=" text-center justify-content-center align-items-center" style="font-size: 1.4em;" style="display:none;">
+    <div class="text-center mb-3">
+        <div class="mb-5">
+            <p>Hi {{username}}! your highest score is {{score}}</p>
+        </div>
+        <div class="status-container">
+            <span id="status"> </span>
+        </div>
+        <div class="score-container mb-3 row">
+            <div class="col">
+                <span>Score: </span>
+                <span id="score">0</span>
+            </div>
+            <div class="col">
+                <span>Lives: </span>
+                <span id="lives">3</span>
+            </div>
+        </div>
+        <div class = "problem-container">
+            <div class="mb-3 row  justify-content-center">
+                <span id="firstOperand" class="operand col-1">No. 1</span>
+                <span class="operator col-1">+</span>
+                <span id="secondOperand" class="operand col-1">No. 2</span>
+                <br>
+                
+            </div>
+            <div class="form-floating mb-3 row  justify-content-center">
+                <div class="col-3">
+                    <input type="text" id="answer" class="form-control text-center" placeholder="Result">
+                </div>
+            </div>
+        </div>
+        <div class="Rules-container mb-3">
+            <ul style="list-style: none;">
+                <li>1. You start with 3 lives.</li>
+                <li>2. Correct answers earn 5 points. However, a penalty will be imposed for each second beyond the
+                    first 5 seconds it takes to answer.</li>
+                <li>3. If you take longer than 10 seconds to answer a question, it will be marked as incorrect and you
+                    can skip it</li>
+            </ul>
+        </div>
+        <div class="game-over">
+            <h1>Game Over</h1>
+            <p>your final score is <span id="finalScore"></span></p>
+        </div>
+        <div class="button-container">
+            <button id="start" class="btn btn-lg btn-outline-primary">Start</button>
+            <button id="rules" class="btn btn-lg btn-outline-primary">Rules</button>
+            <button id="submit" class="btn btn-lg btn-outline-success">Submit</button>
+            <button id="next" class="btn btn-lg btn-outline-danger">Next</button>
+            <button id="restart" class="btn btn-lg btn-outline-primary">Restart</button>
+        </div>
+        <div class="timer-container mt-3 mb-3">
+            Timer: <span id="timer">0</span> seconds
+        </div>
+        <div class="mt-5 row justify-content-center" style="font-size: 0.5em;">
+            <div class="col-lg-6">
+                <table class="table table-bordered ">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">username </th>
+                            <th scope="col">Score</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Solved</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for i in allusers%}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{i.username}}</td>
+                                <td>{{i.highestScore}}</td>
+                                <td>{{i.timeElapsed}}</td>
+                                <td>{{i.questionsSolved}}</td>
+                            </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content%}
+
+
+
